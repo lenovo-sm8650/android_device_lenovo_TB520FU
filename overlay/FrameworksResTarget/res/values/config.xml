@@ -346,4 +346,9 @@
     </string-array>
     <!-- WiFi Display (Miracast) through the QTI session (WfdCommon) -->
     <bool name="config_enableWifiDisplay">true</bool>
+    <!-- First boot palette: extract the seed color from the home wallpaper like stock
+         Pixel and AOSP instead of a fixed brand color. -->
+    <string-array name="theming_defaults" translatable="false">
+        <item>*|TONAL_SPOT|home_wallpaper</item>
+    </string-array>
 </resources>
