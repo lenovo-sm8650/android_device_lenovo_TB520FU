@@ -3,14 +3,14 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-DEVICE_PATH := device/lenovo/lapis
-KERNEL_PATH := device/lenovo/lapis-kernel
+DEVICE_PATH := device/lenovo/TB520FU
+KERNEL_PATH := device/lenovo/TB520FU-kernel
 
 # Inherit from the common SM8650 board configuration.
 include device/lenovo/sm8650-common/BoardConfigCommon.mk
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := lapis,TB520FU
+TARGET_OTA_ASSERT_DEVICE := TB520FU,lapis
 
 # Display
 TARGET_SCREEN_DENSITY := 340
@@ -55,10 +55,10 @@ SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 # Verified Boot
 # pvmfw is a prebuilt (radio/, proprietary-firmware.txt) with its own testkey
 # footer; the bootloader looks up its descriptor in the vbmeta chain.
-BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --include_descriptors_from_image vendor/lenovo/lapis/radio/pvmfw.img
+BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --include_descriptors_from_image vendor/lenovo/TB520FU/radio/pvmfw.img
 
 # Include the proprietary files BoardConfig.
-include vendor/lenovo/lapis/BoardConfigVendor.mk
+include vendor/lenovo/TB520FU/BoardConfigVendor.mk
 
 # Optional customizations (hardware/lenovo/custom), when present
 -include hardware/lenovo/custom/BoardConfigCustom.mk

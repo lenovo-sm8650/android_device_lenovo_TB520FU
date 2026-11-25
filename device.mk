@@ -69,15 +69,15 @@ PRODUCT_PACKAGES += \
 # Stock Lenovo pen/keyboard keylayouts, ZUI-only keycodes remapped
 # (convert_keylayouts.py)
 PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*.kl,device/lenovo/lapis/configs/keylayout,$(TARGET_COPY_OUT_VENDOR)/usr/keylayout) \
-    $(call find-copy-subdir-files,*.idc,device/lenovo/lapis/configs/idc,$(TARGET_COPY_OUT_VENDOR)/usr/idc)
+    $(call find-copy-subdir-files,*.kl,device/lenovo/TB520FU/configs/keylayout,$(TARGET_COPY_OUT_VENDOR)/usr/keylayout) \
+    $(call find-copy-subdir-files,*.idc,device/lenovo/TB520FU/configs/idc,$(TARGET_COPY_OUT_VENDOR)/usr/idc)
 
 # Display configuration of the stock firmware: the panel has no display_id_<id>.xml (the
 # stock vendor one is for the Qualcomm reference panel), so the display service takes the
 # brightness arrays of config.xml and the high brightness mode data of display_hdr.xml
 # (stock DisplayDeviceConfig.zuiLoadHighBrightnessModeData)
 PRODUCT_COPY_FILES += \
-    device/lenovo/lapis/configs/displayconfig-system/display_hdr.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/displayconfig/display_hdr.xml
+    device/lenovo/TB520FU/configs/displayconfig-system/display_hdr.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/displayconfig/display_hdr.xml
 
 # Fingerprint (Goodix)
 PRODUCT_COPY_FILES += \
@@ -108,7 +108,7 @@ PRODUCT_PACKAGES += \
 
 # Kernel
 PRODUCT_COPY_FILES += \
-    device/lenovo/lapis-kernel/modules/vendor_dlkm/system_dlkm.modules.blocklist:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/system_dlkm.modules.blocklist
+    device/lenovo/TB520FU-kernel/modules/vendor_dlkm/system_dlkm.modules.blocklist:$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules/system_dlkm.modules.blocklist
 
 # Overlays
 PRODUCT_ENFORCE_RRO_TARGETS := *
@@ -124,7 +124,7 @@ PRODUCT_PACKAGES += \
 # The NT36532 touch IC is flashless: nvt_36xxx downloads this firmware 5 s
 # after probe, so recovery needs it in its own /vendor/firmware.
 PRODUCT_COPY_FILES += \
-    $(foreach p,boe tianma,vendor/lenovo/lapis/proprietary/vendor/firmware/novatek_ts_$(p)_fw.bin:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/firmware/novatek_ts_$(p)_fw.bin)
+    $(foreach p,boe tianma,vendor/lenovo/TB520FU/proprietary/vendor/firmware/novatek_ts_$(p)_fw.bin:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/firmware/novatek_ts_$(p)_fw.bin)
 
 # ADSP loader modules for recovery (battery/charger). The destination has no
 # lib/ component: PRODUCT_COPY_FILES rejects ELF files under bin/ and lib/.
@@ -137,7 +137,7 @@ RECOVERY_ADSP_MODULES := \
     adsp_loader_dlkm
 
 PRODUCT_COPY_FILES += \
-    $(foreach m,$(RECOVERY_ADSP_MODULES),device/lenovo/lapis-kernel/modules/vendor_dlkm/$(m).ko:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/modules/$(m).ko)
+    $(foreach m,$(RECOVERY_ADSP_MODULES),device/lenovo/TB520FU-kernel/modules/vendor_dlkm/$(m).ko:$(TARGET_COPY_OUT_RECOVERY)/root/vendor/modules/$(m).ko)
 
 # Sensors
 PRODUCT_PACKAGES += \
@@ -158,17 +158,17 @@ PRODUCT_SHIPPING_API_LEVEL := $(BOARD_SHIPPING_API_LEVEL)
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
-    device/lenovo/lapis \
-    device/lenovo/lapis/lenovo/DolbyVisionService \
-    device/lenovo/lapis/lenovo/KeyboardUpdate \
-    device/lenovo/lapis/lenovo/PenService \
+    device/lenovo/TB520FU \
+    device/lenovo/TB520FU/lenovo/DolbyVisionService \
+    device/lenovo/TB520FU/lenovo/KeyboardUpdate \
+    device/lenovo/TB520FU/lenovo/PenService \
     hardware/lenovo
 
 # VINTF
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += device/lenovo/lapis/vintf/device_framework_matrix.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += device/lenovo/TB520FU/vintf/device_framework_matrix.xml
 
 # Inherit from the common SM8650 configuration.
 $(call inherit-product, device/lenovo/sm8650-common/common.mk)
 
 # Inherit from the proprietary files makefile.
-$(call inherit-product, vendor/lenovo/lapis/lapis-vendor.mk)
+$(call inherit-product, vendor/lenovo/TB520FU/TB520FU-vendor.mk)

@@ -7,14 +7,14 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
 
-# Inherit from lapis device
-$(call inherit-product, device/lenovo/lapis/device.mk)
+# Inherit from TB520FU device
+$(call inherit-product, device/lenovo/TB520FU/device.mk)
 
-# Inherit some common PixelOS stuff.
-$(call inherit-product, vendor/custom/config/common_full_tablet_wifionly.mk)
+# Inherit some common Lineage stuff.
+$(call inherit-product, vendor/lineage/config/common_full_tablet_wifionly.mk)
 
-PRODUCT_NAME := custom_lapis
-PRODUCT_DEVICE := lapis
+PRODUCT_NAME := lineage_TB520FU
+PRODUCT_DEVICE := TB520FU
 PRODUCT_MANUFACTURER := LENOVO
 PRODUCT_BRAND := Lenovo
 PRODUCT_MODEL := TB520FU
@@ -29,7 +29,3 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     DeviceProduct=TB520FU \
     SystemDevice=TB520FU \
     SystemName=TB520FU
-
-# Keep the stock ZUI fingerprint set above; Play Integrity Fix spoofs a Pixel
-# profile per process instead of overriding the global build fingerprint.
-$(call inherit-product-if-exists, hardware/lenovo/custom/custom.mk)

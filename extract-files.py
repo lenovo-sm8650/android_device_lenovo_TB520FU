@@ -18,7 +18,7 @@ from extract_utils.main import (
 )
 
 namespace_imports = [
-    'device/lenovo/lapis',
+    'device/lenovo/TB520FU',
     'vendor/lenovo/sm8650-common',
     'hardware/qcom-caf/sm8650',
     'hardware/qcom-caf/wlan',
@@ -218,7 +218,7 @@ blob_fixups: blob_fixups_user_type = {
 }  # fmt: skip
 
 module = ExtractUtilsModule(
-    'lapis',
+    'TB520FU',
     'lenovo',
     blob_fixups=blob_fixups,
     lib_fixups=lib_fixups,

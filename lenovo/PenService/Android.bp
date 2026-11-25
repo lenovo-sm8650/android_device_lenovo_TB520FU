@@ -13,7 +13,7 @@
 //
 
 soong_namespace {
-    imports: ["vendor/lenovo/lapis"],
+    imports: ["vendor/lenovo/TB520FU"],
 }
 
 java_library {

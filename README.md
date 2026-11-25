@@ -1,4 +1,4 @@
-# Lenovo Yoga Tab Plus (lapis) — device tree
+# Lenovo Yoga Tab Plus (TB520FU) — device tree
 
 <p>
   <a href="https://sourceforge.net/projects/pixelos-unofficial-tb520fu/"><img alt="SourceForge OSS Rising Star" src="https://sourceforge.net/cdn/syndication/badge_img/4143825/oss-rising-star-white?achievement=oss-rising-star" width="125"></a>
@@ -8,19 +8,19 @@
 [![Monthly downloads](https://img.shields.io/sourceforge/dm/pixelos-unofficial-tb520fu.svg)](https://sourceforge.net/projects/pixelos-unofficial-tb520fu/files/seventeen/)
 
 Unofficial device tree for the Lenovo Yoga Tab Plus / YOGA Pad Pro (model
-TB520FU, codename lapis, Qualcomm Snapdragon 8 Gen 3).
+TB520FU, Lenovo project name lapis, Qualcomm Snapdragon 8 Gen 3).
 
 | Branch | Builds |
 |---|---|
-| `lineage-24.0` | plain LineageOS 24 (`lineage_lapis`), no source patches |
-| `seventeen` | PixelOS 17 (`custom_lapis`): `lineage-24.0` plus the PixelOS product, LunarisDolby, video motion smoothing and the maintainer customizations |
+| `lineage-24.0` | plain LineageOS 24 (`lineage_TB520FU`), no source patches |
+| `seventeen` | PixelOS 17 (`custom_TB520FU`): `lineage-24.0` plus the PixelOS product, LunarisDolby, video motion smoothing and the maintainer customizations |
 
 | | |
 |---|---|
 | SoC | Qualcomm SM8650 (pineapple) |
 | Kernel | GKI `6.1.138-android14-11`, built from source |
 | Display | 2944×1840 dual-DSI, natively landscape, density 340 |
-| Codename | lapis (`ro.vendor.config.lgsi.project`) |
+| Codename | TB520FU (Lenovo project: lapis, `ro.vendor.config.lgsi.project`) |
 | Stock firmware | `ZUI_18.5.10.037_260929_ROW` |
 | Shipping API | 34 |
 
@@ -66,7 +66,7 @@ None
 
 ## Downloads
 
-Latest build: see [Releases](https://github.com/lenovo-sm8650/android_device_lenovo_lapis/releases/),
+Latest build: see [Releases](https://github.com/lenovo-sm8650/android_device_lenovo_TB520FU/releases/),
 installation steps in the release notes. Files are on
 [SourceForge](https://sourceforge.net/projects/pixelos-unofficial-tb520fu/files/seventeen/).
 Pick the region of your device: ROW and PRC only differ in the device tree
@@ -86,12 +86,12 @@ kernel):
 
 | Path | Repository | Contents |
 |---|---|---|
-| `device/lenovo/lapis` | `android_device_lenovo_lapis` | this tree |
+| `device/lenovo/TB520FU` | `android_device_lenovo_TB520FU` | this tree |
 | `device/lenovo/sm8650-common` | `android_device_lenovo_sm8650-common` | SM8650 (pineapple) platform configuration |
-| `device/lenovo/lapis-kernel` | `android_device_lenovo_lapis-kernel` | stock vendor kernel modules, dtb and dtbo |
+| `device/lenovo/TB520FU-kernel` | `android_device_lenovo_TB520FU-kernel` | stock vendor kernel modules, dtb and dtbo |
 | `hardware/lenovo` | `android_hardware_lenovo` | LenovoParts, the `lenovo-input` system_server bridge; on `seventeen` also LunarisDolby, VideoMotion and the maintainer customizations (`custom/`) |
 | `kernel/lenovo/sm8650` | `android_kernel_lenovo_sm8650` | Android common kernel `android14-6.1` at `2ecae636cf9b` (the source of the stock GKI kernel) plus the Qualcomm UAPI headers |
-| `vendor/lenovo/lapis` | `proprietary_vendor_lenovo_lapis` | device blobs (Git LFS for files over 50 MB) |
+| `vendor/lenovo/TB520FU` | `proprietary_vendor_lenovo_TB520FU` | device blobs (Git LFS for files over 50 MB) |
 | `vendor/lenovo/sm8650-common` | `proprietary_vendor_lenovo_sm8650-common` | platform blobs |
 
 Every repository has a `lineage-24.0` and a `seventeen` branch;
@@ -121,7 +121,7 @@ fails on this kernel). The 60 GKI modules go to system_dlkm, signed with a
 key generated for each build. Lenovo/Qualcomm only ship the vendor modules
 (vendor_boot, vendor_dlkm, all unsigned) and the device trees; their source
 is not published at this version, so they come from the stock firmware
-(`device/lenovo/lapis-kernel/`). Only `android14-6.1` updates keep working
+(`device/lenovo/TB520FU-kernel/`). Only `android14-6.1` updates keep working
 with them (stable KMI).
 
 Source: [kernel/common](https://android.googlesource.com/kernel/common/+/2ecae636cf9be43fdfe04adb25b2c2987838955a),
@@ -137,16 +137,16 @@ sudo apt install git-lfs && git lfs install
 mkdir pixelos && cd pixelos
 repo init -u https://github.com/PixelOS-AOSP/android_manifest -b seventeen --git-lfs
 mkdir -p .repo/local_manifests
-# save the manifest below as .repo/local_manifests/lapis.xml
+# save the manifest below as .repo/local_manifests/TB520FU.xml
 repo sync -c -j$(nproc)
 ```
 
-`.repo/local_manifests/lapis.xml` for PixelOS:
+`.repo/local_manifests/TB520FU.xml` for PixelOS:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <remote name="lapis" fetch="https://github.com/lenovo-sm8650" revision="seventeen" />
+  <remote name="lenovo-sm8650" fetch="https://github.com/lenovo-sm8650" revision="seventeen" />
 
   <!-- Replaced by the forks below -->
   <remove-project name="PixelOS-AOSP/android_frameworks_av" />
@@ -160,22 +160,22 @@ repo sync -c -j$(nproc)
   <!-- Replaced by LunarisDolby (hardware/lenovo) -->
   <remove-project name="PixelOS-AOSP/android_packages_apps_DolbyAtmos" />
 
-  <project name="android_device_lenovo_lapis" path="device/lenovo/lapis" remote="lapis" />
-  <project name="android_device_lenovo_lapis-kernel" path="device/lenovo/lapis-kernel" remote="lapis" />
-  <project name="android_device_lenovo_sm8650-common" path="device/lenovo/sm8650-common" remote="lapis" />
-  <project name="android_hardware_lenovo" path="hardware/lenovo" remote="lapis" />
-  <project name="android_kernel_lenovo_sm8650" path="kernel/lenovo/sm8650" remote="lapis" />
-  <project name="proprietary_vendor_lenovo_lapis" path="vendor/lenovo/lapis" remote="lapis" />
-  <project name="proprietary_vendor_lenovo_sm8650-common" path="vendor/lenovo/sm8650-common" remote="lapis" />
+  <project name="android_device_lenovo_TB520FU" path="device/lenovo/TB520FU" remote="lenovo-sm8650" />
+  <project name="android_device_lenovo_TB520FU-kernel" path="device/lenovo/TB520FU-kernel" remote="lenovo-sm8650" />
+  <project name="android_device_lenovo_sm8650-common" path="device/lenovo/sm8650-common" remote="lenovo-sm8650" />
+  <project name="android_hardware_lenovo" path="hardware/lenovo" remote="lenovo-sm8650" />
+  <project name="android_kernel_lenovo_sm8650" path="kernel/lenovo/sm8650" remote="lenovo-sm8650" />
+  <project name="proprietary_vendor_lenovo_TB520FU" path="vendor/lenovo/TB520FU" remote="lenovo-sm8650" />
+  <project name="proprietary_vendor_lenovo_sm8650-common" path="vendor/lenovo/sm8650-common" remote="lenovo-sm8650" />
 
-  <project name="android_frameworks_av" path="frameworks/av" remote="lapis" />
-  <project name="android_frameworks_base" path="frameworks/base" remote="lapis" />
-  <project name="android_frameworks_native" path="frameworks/native" remote="lapis" />
-  <project name="android_packages_apps_Aperture" path="packages/apps/Aperture" remote="lapis" revision="lineage-24.0" />
-  <project name="android_packages_apps_ParanoidSense" path="packages/apps/ParanoidSense" remote="lapis" />
-  <project name="android_packages_apps_Settings" path="packages/apps/Settings" remote="lapis" />
-  <project name="android_packages_apps_Updater" path="packages/apps/Updater" remote="lapis" />
-  <project name="android_vendor_lineage" path="vendor/lineage" remote="lapis" />
+  <project name="android_frameworks_av" path="frameworks/av" remote="lenovo-sm8650" />
+  <project name="android_frameworks_base" path="frameworks/base" remote="lenovo-sm8650" />
+  <project name="android_frameworks_native" path="frameworks/native" remote="lenovo-sm8650" />
+  <project name="android_packages_apps_Aperture" path="packages/apps/Aperture" remote="lenovo-sm8650" revision="lineage-24.0" />
+  <project name="android_packages_apps_ParanoidSense" path="packages/apps/ParanoidSense" remote="lenovo-sm8650" />
+  <project name="android_packages_apps_Settings" path="packages/apps/Settings" remote="lenovo-sm8650" />
+  <project name="android_packages_apps_Updater" path="packages/apps/Updater" remote="lenovo-sm8650" />
+  <project name="android_vendor_lineage" path="vendor/lineage" remote="lenovo-sm8650" />
 </manifest>
 ```
 
@@ -184,7 +184,7 @@ For LineageOS, see the README of the `lineage-24.0` branch.
 
 ```bash
 source build/envsetup.sh
-breakfast lapis user
+breakfast TB520FU user
 m pixelos        # LineageOS: m bacon
 ```
 
@@ -198,7 +198,7 @@ see its README for the SourceForge folder layout, its `tools/ota_json.py` and
 the incremental OTA steps.
 ## Installing
 
-Sideload the OTA package (`out/target/product/lapis/PixelOS_lapis-*.zip`)
+Sideload the OTA package (`out/target/product/TB520FU/PixelOS_TB520FU-*.zip`)
 from the PixelOS recovery: Apply update > Apply from ADB, then
 `adb sideload <zip>`. It installs to the other slot, like any A/B update.
 

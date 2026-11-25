@@ -4,4 +4,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/custom_lapis.mk
+    $(LOCAL_DIR)/custom_TB520FU.mk

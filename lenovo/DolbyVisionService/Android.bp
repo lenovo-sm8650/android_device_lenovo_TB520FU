@@ -13,8 +13,8 @@
 
 soong_namespace {
     imports: [
-        "vendor/lenovo/lapis",
-        "device/lenovo/lapis/lenovo/PenService",
+        "vendor/lenovo/TB520FU",
+        "device/lenovo/TB520FU/lenovo/PenService",
     ],
 }
 
