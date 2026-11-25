@@ -15,7 +15,7 @@ $(call inherit-product, vendor/lineage/config/common_full_tablet_wifionly.mk)
 
 PRODUCT_NAME := lineage_lapis
 PRODUCT_DEVICE := lapis
-PRODUCT_MANUFACTURER := Lenovo
+PRODUCT_MANUFACTURER := LENOVO
 PRODUCT_BRAND := Lenovo
 PRODUCT_MODEL := TB520FU
 PRODUCT_CHARACTERISTICS := nosdcard,tablet
@@ -24,7 +24,7 @@ PRODUCT_GMS_CLIENTID_BASE := android-lenovo
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BuildDesc="TB520FU-user 17 CQ2A.260712.001 37 release-keys" \
-    BuildFingerprint=qti/TB520FU/TB520FU:17/CQ2A.260712.001/ZUI_18.5.10.037_260929_ROW:user/release-keys \
+    BuildFingerprint=Lenovo/TB520FU/TB520FU:17/CQ2A.260712.001/TB520FU_ROW_OPEN_USER_Q29300.0_A17_ZUI_18.5.10.037_ST_260929:user/release-keys \
     DeviceName=TB520FU \
     DeviceProduct=TB520FU \
     SystemDevice=TB520FU \
