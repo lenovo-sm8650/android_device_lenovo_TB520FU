@@ -1,3 +1,9 @@
 # PixelOS property system_server reads (the version for the updater) but
 # device/custom only grants to apps.
 get_prop(system_server, custom_version_prop)
+
+# SpoofManager looks up the partition security patch props a device may set
+# (ro.vendor.build.version.security_patch, ro.odm.build.security_patch, ...).
+# The ones this device does not set fall in vendor_default_prop, which the
+# system server cannot read; the lookup just finds nothing.
+dontaudit system_server vendor_default_prop:file r_file_perms;
