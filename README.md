@@ -34,7 +34,7 @@ Highlights of the PixelOS (`seventeen`) build:
 - **Widevine L1** — Netflix HD playback.
 - **HDR, HDR10+ and Dolby Vision** — HDR video playback with the device's display and media codecs.
 - **Dolby Atmos** — LunarisDolby settings, sound profiles and equalizer.
-- **Play Integrity spoofing** — the PixelOS one, in Settings > System > Developer options.
+- **Play Integrity spoofing** — the PixelOS one (Settings > System > Developer options), set up and kept up to date by Specter (see Experimental features). With a valid keybox, BASIC, DEVICE and STRONG integrity pass.
 - **OTA updates** — full and incremental updates through Settings > System > System update.
 - **Lenovo Pencil** — automatic pairing, battery and charging status, writing haptics, pen buttons and the Lenovo pen settings.
 - **Lenovo keyboard** — touchpad controls, configurable shortcut keys, backlight, firmware updates and desktop mode integration.
@@ -51,9 +51,12 @@ HDR and Dolby playback depends on the app, content and streaming subscription.
 
 ### Experimental features
 
+Settings > Advanced features is grouped into **Lenovo features** (landscape view, folio case mode), **Performance** (game performance, memory expansion) and **Experimental features**.
+
 Available in Settings > Advanced features > Experimental features (customizations build only):
 
-- **App compatibility** — choose the brand, manufacturer and model reported to selected apps (by default, Netflix sees the OnePlus Pad Go 2).
+- **Device spoofing** — choose the brand, manufacturer and model reported to selected apps (by default, Netflix sees the OnePlus Pad Go 2).
+- **Specter** — sets up the PixelOS Play Integrity spoofing after the first boot and keeps it current: a certified Pixel profile, a keybox from its catalog (with a revocation check) and the security patch level.
 
 ## Working
 
@@ -104,10 +107,10 @@ originals:
 
 | Path | Fork | Changes |
 |---|---|---|
-| `frameworks/base` | `android_frameworks_base` | Lenovo pen haptic and keyboard managers, white balance strength, keyboard desktop mode opt-out, pen hover pointer, installer report for picked apps |
+| `frameworks/base` | `android_frameworks_base` | Lenovo pen haptic and keyboard managers, white balance strength, keyboard desktop mode opt-out, pen hover pointer, installer report for picked apps, device identity for selected apps; Play Integrity spoofing: Play Store fingerprint on by default, keyboxes without a DeviceID, spoofing on once setup is finished |
 | `frameworks/av` | `android_frameworks_av` | video motion smoothing (Qualcomm VPP) |
 | `frameworks/native` | `android_frameworks_native` | 60 Hz floor for a static screen |
-| `packages/apps/Settings` | `android_packages_apps_Settings` | optional white balance switch, Lenovo `PLACE_HOLDER` action |
+| `packages/apps/Settings` | `android_packages_apps_Settings` | optional white balance switch, Lenovo `PLACE_HOLDER` action, Play Integrity spoofing defaults matching `frameworks/base` |
 | `packages/apps/ParanoidSense` | `android_packages_apps_ParanoidSense` | landscape enrollment preview |
 | `packages/apps/Updater` | `android_packages_apps_Updater` | SourceForge update server |
 | `packages/apps/Aperture` | `android_packages_apps_Aperture` | UI rotation on a landscape display |
